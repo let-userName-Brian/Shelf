@@ -3,14 +3,10 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.HOST,
+  user: process.env.USER,
   database: process.env.DB,
   password: process.env.PASSWORD,
   port: process.env.PRT,
-  ssl: {
-    rejectUnauthorized: false,
-  },
 });
 
 function verifyToken(req, res, next) {

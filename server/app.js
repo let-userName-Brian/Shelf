@@ -14,14 +14,10 @@ const { verifyToken, login } = require('./auth_routes/authRoutes');
 require("dotenv").config();
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.HOST,
+  user: process.env.USER,
   database: process.env.DB,
   password: process.env.PASSWORD,
   port: process.env.PRT,
-  ssl: {
-    rejectUnauthorized: false,
-  },
 });
 
 app.use(bodyParser.json());
@@ -94,4 +90,8 @@ app.patch('/shopping-cart', addToCart)
 
 heroku git:remote -a postgres-apr
 git push heroku main:main
+docker run -d -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=postgres postgres
+//import sql file
+\i /Users/brianhardy/Desktop/shelfbackup.sql
+
 */
