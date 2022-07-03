@@ -31,8 +31,6 @@ export default function ProfileMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My Account</MenuItem> */}
         <Link to="/signup"style={{ textDecoration: 'none', color: 'black'}}> <MenuItem onClick={handleClose}>Register Account</MenuItem></Link>
         <MenuItem onClick={handleLogOut}>Logout</MenuItem>
       </Menu>

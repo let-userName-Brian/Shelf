@@ -19,6 +19,7 @@ import TextField from "@mui/material/TextField";
 
 
 export default function CheckoutDrawer({ shoppingCart, setShoppingCart, inventory, fetchInventory, }) {
+  const user_dod = localStorage.getItem("user_dod");
 
   const [newShoppingCart, setNewShoppingCart] = useState([]); //shopping cart state
   const [users, setUsers] = useState([]); //users state for list of users in drop down
@@ -29,13 +30,13 @@ export default function CheckoutDrawer({ shoppingCart, setShoppingCart, inventor
   useEffect(() => {
     fetchUsers();
     fetchNewShoppingCart();
+    console.log(user_dod)
     //breaks the app into a loop *****
     // if (localStorage.getItem("authorization") === null)
     //   window.location.href = "/login";
   }, []);
 
-  const cartLength = newShoppingCart.map(item => item.shopping_cart.length)
-
+  const cartLength = newShoppingCart?.map(item => item.shopping_cart.length)
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
       right: -3,
@@ -92,7 +93,7 @@ export default function CheckoutDrawer({ shoppingCart, setShoppingCart, inventor
   const fetchNewShoppingCart = async () => {
     // setSpinner(true);
     axios
-      .get("http://localhost:3000/shopping-cart", {
+      .get(`http://localhost:3000/shopping-cart/${user_dod}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authorization")}`,
         },
@@ -111,7 +112,7 @@ export default function CheckoutDrawer({ shoppingCart, setShoppingCart, inventor
   const onDelete = async (items, index) => {
     console.log("item from front end going to db", items.UUID);
     let id = items.UUID;
-    axios.delete(`http://localhost:3000/shopping-cart/${id}`)
+    axios.delete(`http://localhost:3000/shopping-cart/${id}/${user_dod}`)
       .then((res) => {
         if (res.status === 200) {
           fetchNewShoppingCart();
@@ -178,7 +179,7 @@ export default function CheckoutDrawer({ shoppingCart, setShoppingCart, inventor
                 sx={{ mt: 2, bgcolor: "#155E9C", borderBottomWidth: 3 }}
               />
               <ListItem>
-                {newShoppingCart.map((item, index) => {
+                {newShoppingCart?.map((item, index) => {
                   return (
                     <div key={index}>
                       {item.shopping_cart?.map((items, index) => {

@@ -22,12 +22,9 @@ export default function RowsGrid({
   inventory,
   fetchInventory,
   spinner,
-  setSpinner,
-  shoppingCart,
-  setShoppingCart,
 }) {
   const [newShoppingCart, setNewShoppingCart] = useState([]); //shopping cart state
-
+  const user_dod = localStorage.getItem("user_dod");
   const [editedItem, setEditedItem] = useState({
     Name: "",
     Brand: "",
@@ -128,20 +125,16 @@ export default function RowsGrid({
       });
   };
 
-
   /**
    * adds to shopping cart column in the users table
    */
-
     const addToCart = async (params) => {
       let userShoppingCart = params.row;
-      console.log(userShoppingCart)
       axios
-        .patch("http://localhost:3000/shopping-cart", userShoppingCart)
+        .patch(`http://localhost:3000/shopping-cart/${user_dod}`, userShoppingCart)
         .then((res) => {
           if (res.status === 200) {
             setNewShoppingCart([...newShoppingCart, userShoppingCart]);
-            fetchNewShoppingCart();
           }
         })
         .catch((err) => {
