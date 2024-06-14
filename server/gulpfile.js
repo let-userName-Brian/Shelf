@@ -13,6 +13,7 @@ const paths = {
   server_issued_items_routes: '../prod-build/issued_items_routes',
   server_sfs_s6_inventory_routes: '../prod-build/sfs_s6_inventory_routes',
   server_sfs_cape_inventory_routes: '../prod-build/sfs_cape_inventory_routes',
+  server_fss45_bowling_inventory_routes: '../prod-build/fss45_bowling_inventory_routes',
   server_sfs_patrick_inventory_routes: '../prod-build/sfs_patrick_inventory_routes',
   server_shoppingcart_routes: '../prod-build/shoppingcart_routes',
   server_user_routes: '../prod-build/user_routes',
@@ -69,6 +70,12 @@ function copySfsS6InventoryRoutesTask() {
         .pipe(dest(`${paths.server_sfs_s6_inventory_routes}`))
 }
 
+function copyFss45BowlingInventoryRoutesTask() {
+  log('copying server 45 SFS Bowling routes into the directory')
+  return src(['fss45_bowling_inventory_routes/**'])
+        .pipe(dest(`${paths.server_fss45_bowling_inventory_routes}`))
+}
+
 function copySfsCapeInventoryRoutesTask() {
   log('copying server CAPE INV routes into the directory')
   return src(['sfs_cape_inventory_routes/**'])
@@ -113,7 +120,8 @@ exports.default = series(
     copySfsCapeInventoryRoutesTask, 
     copySfsPatrickInventoryRoutesTask, 
     copyShoppingCartRoutesTask, 
-    copyUserRoutesTask
+    copyUserRoutesTask,
+    copyFss45BowlingInventoryRoutesTask
     ),
   zippingTask
 );

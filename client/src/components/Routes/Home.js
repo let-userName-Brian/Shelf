@@ -46,7 +46,7 @@ function Home() {
           >
           <Box sx={{ mt: 10 }}>
             <div>
-            <Typography variant="h3">Welcome to Shelf! </Typography>
+            <Typography variant="h3">Welcome to Shelf!!!!! </Typography>
             </div>
           </Box>
 
