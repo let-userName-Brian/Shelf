@@ -35,6 +35,7 @@ function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
 
 
+  //comment out this one if doing local dev ...use this if live
   const API = {
     website: 'http://shelfapi-env.eba-phxch2is.us-gov-west-1.elasticbeanstalk.com' 
   };
