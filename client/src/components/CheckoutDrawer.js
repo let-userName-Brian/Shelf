@@ -674,14 +674,13 @@ const changeItemQuantity = async (items, index) => {
               {cartLength >= 1 ? (
             <Box>
               <FormControl>
-              <FormLabel id="demo-radio-buttons-group-label"> </FormLabel>
+              {/* <FormLabel id="demo-radio-buttons-group-label"> </FormLabel> */}
               <RadioGroup
-                    aria-labelledby="demo-controlled-radio-buttons-group"
-                    defaultValue="Issue To User"
-                    name="controlled-radio-buttons-group"
-                    value={value}
-                    onChange={handleChange}
-              >
+    aria-labelledby="demo-controlled-radio-buttons-group"
+    name="controlled-radio-buttons-group"
+    value={radioValue}
+    onChange={(e) => setRadioValue(e.target.value)}
+  >
                 <FormControlLabel value="Issue To User" control={<Radio />} label="Issue To User"  />
                 <FormControlLabel value="Return To Warehouse"  control={<Radio />} label="Return To Warehouse"  />
                 {/* <FormControlLabel value="Issue To Warehouse"  control={<Radio />} label="Issue To Warehouse"  /> */}
